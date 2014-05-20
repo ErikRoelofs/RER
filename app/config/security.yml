@@ -1,0 +1,35 @@
+security:
+    encoders:
+        Samson\Bundle\SecurityBundle\Entity\User:
+          algorithm: md5
+          iterations: 1
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        main:
+            entity: { class: Samson\Bundle\SecurityBundle\Entity\User, property: username }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            pattern:  ^/login$
+            security: false
+
+        password:
+            pattern:  ^/(forgot|reset)_password
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            form_login: ~
+            logout: ~
+            provider: main
+            switch_user: true
+    acl:
+       connection: default

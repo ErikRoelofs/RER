@@ -1,0 +1,28 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
+
+    mailer_transport:  smtp
+    mailer_host:       127.0.0.1
+    mailer_user:       ~
+    mailer_password:   ~
+
+    locale:            en
+    secret:            ThisTokenIsNotSoSecretChangeIt
+
+    app_name:          ~
+    instance_name:     ~
+    info_mail:         ~
+
+    samson_core.env:    ~
+    logo_image:         path/to/image.png
+
+    app_company:        ~
+    mailer_disable_delivery:    ~
+    mailer_delivery_address:    ~
+    noreply_address:    ~
+    log_address:        ~

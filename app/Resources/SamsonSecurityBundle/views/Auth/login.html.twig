@@ -1,0 +1,25 @@
+{% extends 'SamsonSecurityBundle::base.html.twig' %}
+
+{% block extraBodyClasses 'login-page' %}
+
+{% block pageicon asset("/bundles/samsonframework/images/icon-g-security.png") %}
+{% block pagetitle 'security.login_to'|trans({'%app%': core.name }) %}
+
+{% block full_body %}
+<div id="login-page-graphic"></div>
+
+{{ block('body_header') }}
+
+{% block body_content %}
+<div id="wrapper">
+    <div id="contents">
+        <div id="login-wrapper">
+            <h1 id="page-title"><span class="icon-title icon-security-g"></span>{{ block('pagetitle') }}</h1>
+        {% include "SamsonSecurityBundle:Auth:_login.html.twig" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{{ block('body_footer') }}
+{% endblock %}

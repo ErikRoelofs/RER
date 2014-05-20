@@ -1,0 +1,28 @@
+{% extends 'SamsonFrameworkBundle::layout.html.twig' %}
+
+{% set angular_app_name = '' %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% stylesheets '@ExampleExampleBundle/Resources/public/css/example.scss' filter="scssphp, cssrewrite" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}">
+{% endstylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+{% include 'SamsonDataGridBundle::javascripts.html.twig' %}
+
+{% javascripts 'path/to/javascripts/*.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{% block body_content %}
+<div id="wrapper">
+{{ parent() }}
+    </div>
+{% endblock %}
