@@ -7,5 +7,7 @@ interface RepositoryInterface
 {
     public function count();
 
-    public function persist( $entity );
+    public function persist($entity);
+
+    public function remove($entity);
 } 

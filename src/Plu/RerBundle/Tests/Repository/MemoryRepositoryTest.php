@@ -3,6 +3,7 @@
 namespace Plu\RerBundle\Repository\Tests;
 
 use Plu\RerBundle\Entity\Entity;
+use Plu\RerBundle\Exception\CannotRemoveUnknownEntityException;
 use Plu\RerBundle\Repository\MemoryRepository;
 
 class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
@@ -27,6 +28,25 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->repository->persist($this->entity);
         $this->assertEquals(1, $this->repository->count());
+    }
+
+    public function testMemoryRepositoryCannotRemoveUnknownEntity()
+    {
+        try {
+            $this->repository->remove($this->entity);
+            $this->assertEquals(true, false);
+        } catch (CannotRemoveUnknownEntityException $e) {
+            $this->assertEquals(true, true);
+        }
+
+    }
+
+    public function testMemoryRepositoryCanRemoveKnownEntity()
+    {
+        $this->repository->persist($this->entity);
+        $this->repository->remove($this->entity);
+        $this->assertEquals(0, $this->repository->count());
+
     }
 
 }
