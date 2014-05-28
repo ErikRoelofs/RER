@@ -38,7 +38,6 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
         } catch (CannotRemoveUnknownEntityException $e) {
             $this->assertEquals(true, true);
         }
-
     }
 
     public function testMemoryRepositoryCanRemoveKnownEntity()
