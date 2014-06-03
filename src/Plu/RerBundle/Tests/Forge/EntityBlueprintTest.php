@@ -29,7 +29,6 @@ class EntityBlueprintTest extends \PHPUnit_Framework_TestCase
         } catch (\InvalidArgumentException $e) {
             $this->assertTrue(true);
         }
-
     }
 
     public function testItShouldAllowRemovingFields()
@@ -40,12 +39,33 @@ class EntityBlueprintTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->blueprint->getFields(), array());
     }
 
+    public function testItShouldNotAllowRemovingUnknownFields()
+    {
+        $field = new IntegerField('name');
+        try {
+            $this->blueprint->removeField($field);
+            $this->assertTrue(false);
+        } catch (\InvalidArgumentException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
     public function testItShouldAllowRemovingFieldsByName()
     {
         $field = new IntegerField('name');
         $this->blueprint->addField($field);
         $this->blueprint->removeFieldByName('name');
         $this->assertEquals($this->blueprint->getFields(), array());
+    }
+
+    public function testItShouldNotAllowRemovingUnknownFieldsByName()
+    {
+        try {
+            $this->blueprint->removeFieldByName('name');
+            $this->assertTrue(false);
+        } catch (\InvalidArgumentException $e) {
+            $this->assertTrue(true);
+        }
     }
 
 

@@ -9,7 +9,8 @@ class EntityForgeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->forge = new EntityForge();
+        $this->mockFactory = $this->getMock('Plu\RerBundle\Forge\ProtoEntityFactory');
+        $this->forge = new EntityForge($this->mockFactory);
         $this->mockBlueprint = $this->getMock('Plu\RerBundle\Forge\EntityBlueprint');
     }
 

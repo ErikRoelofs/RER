@@ -6,6 +6,14 @@ namespace Plu\RerBundle\Forge;
 class EntityForge
 {
 
+    private $protoFactory;
+
+    public function __construct(ProtoEntityFactory $factory)
+    {
+        $this->protoFactory = $factory;
+    }
+
+
     public function newBlueprint()
     {
         return new EntityBlueprint;
@@ -14,6 +22,11 @@ class EntityForge
     public function addField(EntityBlueprint $blueprint, $field)
     {
         $blueprint->addField($field);
+    }
+
+    public function makeProtoEntity(EntityBlueprint $blueprint)
+    {
+
     }
 
 } 

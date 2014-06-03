@@ -15,7 +15,8 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->repository = new MemoryRepository();
+        $this->mockBlueprint = $this->getMock('Plu\RerBundle\Forge\EntityBlueprint');
+        $this->repository = new MemoryRepository($this->mockBlueprint);
         $this->entity = new Entity();
     }
 

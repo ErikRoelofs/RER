@@ -1,16 +1,17 @@
 <?php
 
-namespace Plu\RerBundle\Forge;
+namespace Plu\RerBundle\Entity;
 
-// an entity-blueprint serves as the building plans for the creation of an actual entity (the class, not the object!)
 use Plu\RerBundle\Field\Field;
 
-class EntityBlueprint
+class ProtoEntity
 {
 
     private $fields = array();
 
     private $nameLookup = array();
+
+    private $values = array();
 
     public function addField(Field $field)
     {
@@ -18,6 +19,7 @@ class EntityBlueprint
             throw new \InvalidArgumentException("A field named '" . $field->getName() . ' already exists.');
         }
         $this->fields[] = $field;
+        $this->values[strtolower($field->getName())] = true;
         $this->nameLookup[$field->getName()] = $field;
     }
 
@@ -46,6 +48,32 @@ class EntityBlueprint
     public function getFields()
     {
         return $this->fields;
+    }
+
+    public function __call($method, $args)
+    {
+        if (substr($method, 0, 3) == 'set') {
+            return $this->handleSet(strtolower(substr($method, 3)), $args);
+        } elseif (substr($method, 0, 3) == 'get') {
+            return $this->handleGet(strtolower(substr($method, 3)), $args);
+        }
+        throw new \InvalidArgumentException("No such method: " . $method);
+    }
+
+    private function handleSet($method, $args)
+    {
+        if (!isset($this->values[$method])) {
+            throw new \InvalidArgumentException("No such method: " . $method);
+        }
+        $this->values[$method] = $args[0];
+    }
+
+    private function handleGet($method, $args)
+    {
+        if (!isset($this->values[$method])) {
+            throw new \InvalidArgumentException("No such method: " . $method);
+        }
+        return $this->values[$method];
     }
 
 }

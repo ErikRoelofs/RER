@@ -4,11 +4,19 @@ namespace Plu\RerBundle\Repository;
 
 
 use Plu\RerBundle\Exception\CannotRemoveUnknownEntityException;
+use Plu\RerBundle\Forge\EntityBlueprint;
 
 class MemoryRepository implements RepositoryInterface
 {
 
     private $contents = array();
+
+    private $blueprint;
+
+    public function __construct(EntityBlueprint $blueprint)
+    {
+        $this->blueprint = $blueprint;
+    }
 
     public function count()
     {

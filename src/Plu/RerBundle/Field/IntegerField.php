@@ -17,4 +17,4 @@ class IntegerField implements Field
         return $this->name;
     }
 
-} 
+}
