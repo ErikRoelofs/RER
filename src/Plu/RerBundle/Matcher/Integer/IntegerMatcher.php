@@ -2,9 +2,8 @@
 
 namespace Plu\RerBundle\Matcher\Integer;
 
-interface IntegerMatcher
+use Plu\RerBundle\Matcher\Matcher;
+
+interface IntegerMatcher extends Matcher
 {
-
-    public function matches($int);
-
 } 

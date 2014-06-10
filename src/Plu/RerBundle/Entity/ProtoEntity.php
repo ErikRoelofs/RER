@@ -3,7 +3,7 @@
 namespace Plu\RerBundle\Entity;
 
 use Plu\RerBundle\Field\Field;
-use Plu\RerBundle\Matcher\Integer\IntegerMatcher;
+use Plu\RerBundle\Matcher\Matcher;
 
 class ProtoEntity
 {
@@ -91,7 +91,7 @@ class ProtoEntity
     {
         foreach ($this->getFields() as $field) {
             $matcher = $this->getValueFor($field);
-            if ($matcher instanceof IntegerMatcher) {
+            if ($matcher instanceof Matcher) {
                 if (!$matcher->matches($entity->findValueForField($field))) {
                     return false;
                 }
