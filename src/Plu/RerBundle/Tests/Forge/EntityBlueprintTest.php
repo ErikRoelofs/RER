@@ -68,5 +68,4 @@ class EntityBlueprintTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-
 }

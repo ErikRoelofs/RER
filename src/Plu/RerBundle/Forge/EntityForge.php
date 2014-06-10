@@ -6,13 +6,21 @@ namespace Plu\RerBundle\Forge;
 class EntityForge
 {
 
+    /**
+     * @var ProtoEntityFactory
+     */
     private $protoFactory;
 
-    public function __construct(ProtoEntityFactory $factory)
-    {
-        $this->protoFactory = $factory;
-    }
+    /**
+     * @var RealEntityFactory
+     */
+    private $realFactory;
 
+    public function __construct(ProtoEntityFactory $pFactory, RealEntityFactory $rFactory)
+    {
+        $this->protoFactory = $pFactory;
+        $this->realFactory = $rFactory;
+    }
 
     public function newBlueprint()
     {
@@ -26,7 +34,12 @@ class EntityForge
 
     public function makeProtoEntity(EntityBlueprint $blueprint)
     {
+        return $this->protoFactory->convert($blueprint);
+    }
 
+    public function makeRealEntity(EntityBlueprint $blueprint)
+    {
+        return $this->realFactory->convert($blueprint);
     }
 
 } 

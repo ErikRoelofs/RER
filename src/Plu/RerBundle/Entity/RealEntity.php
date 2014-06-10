@@ -3,9 +3,8 @@
 namespace Plu\RerBundle\Entity;
 
 use Plu\RerBundle\Field\Field;
-use Plu\RerBundle\Matcher\Integer\IntegerMatcher;
 
-class ProtoEntity
+class RealEntity
 {
 
     private $fields = array();
@@ -74,30 +73,17 @@ class ProtoEntity
         if (!isset($this->values[$method])) {
             throw new \InvalidArgumentException("No such method: " . $method);
         }
-        return $this->getValueFor($method);
+        return $this->values[$method];
     }
 
-    private function getValueFor($field)
+    public function findValueForField($field)
     {
         if ($field instanceof Field) {
-            return $this->getValueFor($field->getName());
+            return $this->findValueForField($field->getName());
         }
-        if (isset ($this->values[$field])) {
+        if (isset($this->values[$field])) {
             return $this->values[$field];
         }
-    }
-
-    public function matches(RealEntity $entity)
-    {
-        foreach ($this->getFields() as $field) {
-            $matcher = $this->getValueFor($field);
-            if ($matcher instanceof IntegerMatcher) {
-                if (!$matcher->matches($entity->findValueForField($field))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
 }

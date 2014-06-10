@@ -2,8 +2,11 @@
 
 namespace Plu\RerBundle\Repository\Tests;
 
-use Plu\RerBundle\Entity\Entity;
+use Plu\RerBundle\Entity\RealEntity;
 use Plu\RerBundle\Exception\CannotRemoveUnknownEntityException;
+use Plu\RerBundle\Field\IntegerField;
+use Plu\RerBundle\Forge\EntityBlueprint;
+use Plu\RerBundle\Forge\EntityForge;
 use Plu\RerBundle\Repository\MemoryRepository;
 
 class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
@@ -13,11 +16,22 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
 
     private $entity;
 
+    /**
+     * @var EntityBlueprint
+     */
+    private $mockBlueprint;
+
+    /**
+     * @var EntityForge
+     */
+    private $mockForge;
+
     public function setUp()
     {
         $this->mockBlueprint = $this->getMock('Plu\RerBundle\Forge\EntityBlueprint');
-        $this->repository = new MemoryRepository($this->mockBlueprint);
-        $this->entity = new Entity();
+        $this->mockForge = $this->getMockBuilder('Plu\RerBundle\Forge\EntityForge')->disableOriginalConstructor()->getMock();
+        $this->repository = new MemoryRepository($this->mockBlueprint, $this->mockForge);
+        $this->entity = new RealEntity();
     }
 
     public function testMemoryRepositoryCanCountEmpty()
@@ -46,8 +60,18 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
         $this->repository->persist($this->entity);
         $this->repository->remove($this->entity);
         $this->assertEquals(0, $this->repository->count());
+    }
 
+    public function testMemoryRepositoryCanMakeProtoEntity()
+    {
+        $this->mockForge->expects($this->once())->method('makeProtoEntity')->with($this->mockBlueprint)->will($this->returnValue('test'));
+        $this->assertEquals('test', $this->repository->getProtoEntity());
+    }
+
+    public function testMemoryRepositoryCanMakeNewEntityFromBlueprint()
+    {
+        $this->mockForge->expects($this->once())->method('makeRealEntity')->with($this->mockBlueprint)->will($this->returnValue('test'));
+        $this->assertEquals('test', $this->repository->newEntity());
     }
 
 }
- 
