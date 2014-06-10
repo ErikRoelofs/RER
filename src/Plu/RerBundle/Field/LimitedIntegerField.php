@@ -4,7 +4,7 @@ namespace Plu\RerBundle\Field;
 
 use Plu\RerBundle\Matcher\Integer\IntegerMatcher;
 
-class LimitedIntegerField implements Field
+class LimitedIntegerField extends IntegerField
 {
 
     private $name;
@@ -12,18 +12,19 @@ class LimitedIntegerField implements Field
 
     public function __construct($name, IntegerMatcher $matcher)
     {
-        $this->name = $name;
+        parent::__construct($name);
         $this->matcher = $matcher;
-    }
-
-    public function getName()
-    {
-        return $this->name;
     }
 
     public function getMatcher()
     {
         return $this->matcher;
     }
+
+    public function isValid($value)
+    {
+        return parent::isValid($value) && $this->matcher->matches($value);
+    }
+
 
 } 

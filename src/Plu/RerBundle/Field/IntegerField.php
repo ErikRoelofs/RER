@@ -17,4 +17,9 @@ class IntegerField implements Field
         return $this->name;
     }
 
+    public function isValid($value)
+    {
+        return is_int($value);
+    }
+
 }
