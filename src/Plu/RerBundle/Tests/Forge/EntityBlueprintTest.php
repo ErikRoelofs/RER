@@ -68,4 +68,10 @@ class EntityBlueprintTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testItShouldAllowSettingAnEntityName()
+    {
+        $this->blueprint->setEntityName('test');
+        $this->assertEquals('test', $this->blueprint->getEntityName());
+    }
+
 }

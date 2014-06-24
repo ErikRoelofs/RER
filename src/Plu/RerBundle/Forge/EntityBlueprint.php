@@ -12,6 +12,8 @@ class EntityBlueprint
 
     private $nameLookup = array();
 
+    private $entityName = '';
+
     public function addField(Field $field)
     {
         if (isset($this->nameLookup[$field->getName()])) {
@@ -46,6 +48,16 @@ class EntityBlueprint
     public function getFields()
     {
         return $this->fields;
+    }
+
+    public function setEntityName($name)
+    {
+        $this->entityName = $name;
+    }
+
+    public function getEntityName()
+    {
+        return $this->entityName;
     }
 
 }

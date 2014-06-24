@@ -60,5 +60,17 @@ class CallbackRealEntityTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function canSetUniq()
+    {
+        $this->entity->uniq(123);
+        $this->assertEquals(123, $this->entity->uniq());
+    }
+
+    public function canSetType()
+    {
+        $this->entity->type('name');
+        $this->assertEquals('name', $this->entity->type());
+    }
+
 }
  

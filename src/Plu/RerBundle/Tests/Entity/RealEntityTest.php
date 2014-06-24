@@ -47,5 +47,17 @@ class RealEntityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(5, $this->entity->getInt());
     }
 
+    public function canSetUniq()
+    {
+        $this->entity->uniq(123);
+        $this->assertEquals(123, $this->entity->uniq());
+    }
+
+    public function canSetType()
+    {
+        $this->entity->type('name');
+        $this->assertEquals('name', $this->entity->type());
+    }
+
 }
  

@@ -14,6 +14,7 @@ class ProtoEntityFactory
         foreach ($fields as $field) {
             $entity->addField($field);
         }
+        $entity->type($blueprint->getEntityName());
         return $entity;
     }
 

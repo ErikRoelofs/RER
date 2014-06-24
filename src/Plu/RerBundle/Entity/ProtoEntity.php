@@ -14,6 +14,8 @@ class ProtoEntity
 
     private $values = array();
 
+    private $type = '';
+
     public function addField(Field $field)
     {
         if (isset($this->nameLookup[$field->getName()])) {
@@ -98,6 +100,14 @@ class ProtoEntity
             }
         }
         return true;
+    }
+
+    public function type($type = null)
+    {
+        if ($type) {
+            $this->type = $type;
+        }
+        return $this->type;
     }
 
 }

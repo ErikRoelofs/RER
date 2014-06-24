@@ -15,6 +15,8 @@ class RealEntity
 
     private $uniq = null;
 
+    private $type = '';
+
     public function addField(Field $field)
     {
         if (isset($this->nameLookup[$field->getName()])) {
@@ -95,5 +97,14 @@ class RealEntity
         }
         return $this->uniq;
     }
+
+    public function type($type = null)
+    {
+        if ($type) {
+            $this->type = $type;
+        }
+        return $this->type;
+    }
+
 
 }

@@ -39,5 +39,15 @@ class RealEntityFactoryTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function testItConvertsANamedBlueprintIntoANamedRealEntity()
+    {
+        $blueprint = $this->getMock('Plu\RerBundle\Forge\EntityBlueprint');
+        $blueprint->expects($this->once())->method('getFields')->will($this->returnValue(array()));
+        $blueprint->expects($this->once())->method('getEntityName')->will($this->returnValue('Name'));
+
+        $this->assertEquals('Name', $this->factory->convert($blueprint, $this->mockRepository)->type());
+
+    }
+
 }
  
