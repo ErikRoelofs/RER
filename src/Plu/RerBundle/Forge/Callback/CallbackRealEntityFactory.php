@@ -1,10 +1,11 @@
 <?php
 
-namespace Plu\RerBundle\Forge;
+namespace Plu\RerBundle\Forge\Callback;
 
 use Plu\RerBundle\Entity\CallbackRealEntity;
+use Plu\RerBundle\Forge\EntityBlueprint;
 
-class RealEntityFactory
+class CallbackRealEntityFactory
 {
 
     public function convert(EntityBlueprint $blueprint, $repo)
