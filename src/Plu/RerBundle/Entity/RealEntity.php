@@ -77,6 +77,9 @@ class RealEntity
         if (!isset($this->values[$method])) {
             throw new \InvalidArgumentException("No such method: " . $method);
         }
+        if (is_callable($this->values[$method])) {
+            return $this->values[$method]();
+        }
         return $this->values[$method];
     }
 

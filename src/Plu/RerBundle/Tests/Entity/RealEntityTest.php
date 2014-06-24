@@ -34,7 +34,7 @@ class RealEntityTest extends \PHPUnit_Framework_TestCase
         $this->mockField->expects($this->any())->method('getName')->will($this->returnValue('int'));
         $this->entity->addField($this->mockField);
 
-        $this->entity->setInt($this->mockMatcher);
+        $this->entity->setInt(5);
     }
 
     public function testItMakesGetters()
@@ -45,6 +45,17 @@ class RealEntityTest extends \PHPUnit_Framework_TestCase
         $this->entity->setInt(5);
 
         $this->assertEquals(5, $this->entity->getInt());
+    }
+
+    public function testItInvokesCallableValues()
+    {
+        $this->mockField->expects($this->any())->method('getName')->will($this->returnValue('entity'));
+        $this->entity->addField($this->mockField);
+
+        $this->entity->setEntity(function () {
+            return 3;
+        });
+        $this->assertEquals(3, $this->entity->getEntity());
     }
 
     public function canSetUniq()

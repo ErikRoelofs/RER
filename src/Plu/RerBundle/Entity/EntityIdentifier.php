@@ -21,4 +21,9 @@ class EntityIdentifier
         return $this->repo->byUniq($this->uniq);
     }
 
+    public function __invoke()
+    {
+        return $this->getEntity();
+    }
+
 }
