@@ -36,6 +36,7 @@ class MemoryRepository implements RepositoryInterface
 
     public function persist($entity)
     {
+        $entity->uniq(rand(1, 1000000));
         $this->contents[] = $entity;
     }
 
@@ -85,5 +86,15 @@ class MemoryRepository implements RepositoryInterface
         // automatically up to date
     }
 
+    public function byUniq($uniq)
+    {
+        $this->loadAll();
+        foreach ($this->items as $item) {
+            if ($item->uniq() == $uniq) {
+                return $item;
+            }
+        }
+    }
 
-} 
+
+}

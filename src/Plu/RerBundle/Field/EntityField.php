@@ -2,6 +2,8 @@
 
 namespace Plu\RerBundle\Field;
 
+use Plu\RerBundle\Entity\EntityIdentifier;
+
 class EntityField implements Field
 {
 
@@ -22,7 +24,7 @@ class EntityField implements Field
 
     public function isValid($value)
     {
-        return is_object($value) && is_callable(array($value, 'type')) && $value->type() == $this->type;
+        return $value instanceof EntityIdentifier && $value->getEntity() && $value->getEntity()->type() == $this->type;
     }
 
 }

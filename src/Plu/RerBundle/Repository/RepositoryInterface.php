@@ -12,4 +12,6 @@ interface RepositoryInterface
     public function remove($entity);
 
     public function update($entity);
+
+    public function byUniq($uniq);
 } 

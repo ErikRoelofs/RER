@@ -2,6 +2,7 @@
 
 namespace Plu\RerBundle\Field;
 
+use Plu\RerBundle\Entity\EntityIdentifier;
 use Plu\RerBundle\Entity\RealEntity;
 
 class EntityFieldTest extends \PHPUnit_Framework_TestCase
@@ -17,10 +18,19 @@ class EntityFieldTest extends \PHPUnit_Framework_TestCase
     {
 
         $field = new EntityField('name', 'test');
-        $rightEntity = new RealEntity();
-        $rightEntity->type('test');
-        $wrongEntity = new RealEntity();
-        $wrongEntity->type('derp');
+        $repo = $this->getMock('Plu\RerBundle\Repository\RepositoryInterface');
+        $entity = new RealEntity();
+        $entity->type('test');
+        $entity->uniq(1);
+        $repo->expects($this->any())->method('byUniq')->with(1)->will($this->returnValue($entity));
+        $rightEntity = new EntityIdentifier($entity, $repo);
+
+        $repo2 = $this->getMock('Plu\RerBundle\Repository\RepositoryInterface');
+        $entity2 = new RealEntity();
+        $entity2->type('derp');
+        $entity2->uniq(2);
+        $repo2->expects($this->any())->method('byUniq')->with(2)->will($this->returnValue($entity2));
+        $wrongEntity = new EntityIdentifier($entity2, $repo2);
 
         $this->assertTrue($field->isValid($rightEntity));
 

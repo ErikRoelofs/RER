@@ -135,4 +135,15 @@ class FileRepository implements RepositoryInterface
         $this->writeAll();
     }
 
+    public function byUniq($uniq)
+    {
+        $this->loadAll();
+        foreach ($this->items as $item) {
+            if ($item->uniq() == $uniq) {
+                return $item;
+            }
+        }
+    }
+
+
 } 
