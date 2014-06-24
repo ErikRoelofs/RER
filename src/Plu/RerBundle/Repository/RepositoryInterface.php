@@ -10,4 +10,6 @@ interface RepositoryInterface
     public function persist($entity);
 
     public function remove($entity);
+
+    public function update($entity);
 } 

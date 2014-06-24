@@ -4,6 +4,7 @@ namespace Plu\RerBundle\Repository\Tests;
 
 use Plu\RerBundle\Entity\RealEntity;
 use Plu\RerBundle\Exception\CannotRemoveUnknownEntityException;
+use Plu\RerBundle\Field\IntegerField;
 use Plu\RerBundle\Forge\EntityBlueprint;
 use Plu\RerBundle\Forge\EntityForge;
 use Plu\RerBundle\Repository\MemoryRepository;
@@ -13,6 +14,9 @@ class MemoryRepositoryTest extends \PHPUnit_Framework_TestCase
 
     private $repository;
 
+    /**
+     * @var RealEntity
+     */
     private $entity;
 
     /**

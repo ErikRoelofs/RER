@@ -2,16 +2,15 @@
 
 namespace Plu\RerBundle\Forge;
 
-use Plu\RerBundle\Entity\RealEntity;
-use Plu\RerBundle\Repository\RepositoryInterface;
+use Plu\RerBundle\Entity\CallbackRealEntity;
 
 class RealEntityFactory
 {
 
-    public function convert(EntityBlueprint $blueprint, RepositoryInterface $repo)
+    public function convert(EntityBlueprint $blueprint, $repo)
     {
         $fields = $blueprint->getFields();
-        $entity = new RealEntity();
+        $entity = new CallbackRealEntity($repo);
         foreach ($fields as $field) {
             $entity->addField($field);
         }

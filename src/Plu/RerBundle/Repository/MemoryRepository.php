@@ -61,12 +61,12 @@ class MemoryRepository implements RepositoryInterface
 
     public function getProtoEntity()
     {
-        return $this->forge->makeProtoEntity($this->blueprint);
+        return $this->forge->makeProtoEntity($this->blueprint, $this);
     }
 
     public function newEntity()
     {
-        return $this->forge->makeRealEntity($this->blueprint);
+        return $this->forge->makeRealEntity($this->blueprint, $this);
     }
 
     public function searchFor(ProtoEntity $proto)
@@ -79,5 +79,11 @@ class MemoryRepository implements RepositoryInterface
         }
         return $hits;
     }
+
+    public function update($entity)
+    {
+        // automatically up to date
+    }
+
 
 } 

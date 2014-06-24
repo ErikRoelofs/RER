@@ -3,8 +3,9 @@
 namespace Plu\RerBundle\Entity;
 
 use Plu\RerBundle\Field\Field;
+use Plu\RerBundle\Repository\RepositoryInterface;
 
-class RealEntity
+class CallbackRealEntity
 {
 
     private $fields = array();
@@ -14,6 +15,13 @@ class RealEntity
     private $values = array();
 
     private $uniq = null;
+
+    private $repo = null;
+
+    public function __construct(RepositoryInterface $repo)
+    {
+        $this->repo = $repo;
+    }
 
     public function addField(Field $field)
     {

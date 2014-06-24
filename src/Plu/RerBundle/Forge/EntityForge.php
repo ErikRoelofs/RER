@@ -3,6 +3,8 @@
 namespace Plu\RerBundle\Forge;
 
 // the forge has all the tools to modify blueprints, such as adding new fields, copying from other blueprints, removing, extending, etc
+use Plu\RerBundle\Repository\RepositoryInterface;
+
 class EntityForge
 {
 
@@ -32,14 +34,14 @@ class EntityForge
         $blueprint->addField($field);
     }
 
-    public function makeProtoEntity(EntityBlueprint $blueprint)
+    public function makeProtoEntity(EntityBlueprint $blueprint, RepositoryInterface $repo)
     {
-        return $this->protoFactory->convert($blueprint);
+        return $this->protoFactory->convert($blueprint, $repo);
     }
 
-    public function makeRealEntity(EntityBlueprint $blueprint)
+    public function makeRealEntity(EntityBlueprint $blueprint, RepositoryInterface $repo)
     {
-        return $this->realFactory->convert($blueprint);
+        return $this->realFactory->convert($blueprint, $repo);
     }
 
 } 
