@@ -84,6 +84,7 @@ class ProtoEntity
         if ($field instanceof Field) {
             return $this->getValueFor($field->getName());
         }
+        $field = strtolower($field);
         if (isset ($this->values[$field])) {
             return $this->values[$field];
         }

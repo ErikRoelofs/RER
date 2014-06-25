@@ -88,6 +88,7 @@ class RealEntity
         if ($field instanceof Field) {
             return $this->findValueForField($field->getName());
         }
+        $field = strtolower($field);
         if (isset($this->values[$field])) {
             return $this->values[$field];
         }
