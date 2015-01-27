@@ -13,23 +13,9 @@ security:
             entity: { class: Samson\Bundle\SecurityBundle\Entity\User, property: username }
 
     firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        login:
-            pattern:  ^/login$
-            security: false
-
-        password:
-            pattern:  ^/(forgot|reset)_password
-            security: false
-
         secured_area:
             pattern:    ^/
-            form_login: ~
-            logout: ~
-            provider: main
-            switch_user: true
+            security: false
+
     acl:
        connection: default

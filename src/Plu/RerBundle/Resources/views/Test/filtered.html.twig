@@ -3,6 +3,7 @@
         <th>Name</th>
         <th>Min players</th>
         <th>Max players</th>
+        <th>Owner name</th>
     </tr>
 
     {% for row in games %}
@@ -10,6 +11,7 @@
             <td>{{ row.getName() }}</td>
             <td>{{ row.getMinPlayers() }}</td>
             <td>{{ row.getMaxPlayers() }}</td>
+            <td>{{ row.getOwner().getName() }}</td>
         </tr>
     {% endfor %}
 </table>

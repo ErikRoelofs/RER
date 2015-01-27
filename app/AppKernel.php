@@ -17,22 +17,11 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Samson\Bundle\AddressBookBundle\SamsonAddressBookBundle(),
-            new Samson\Bundle\AutocompleteBundle\SamsonAutocompleteBundle(),
-            new Samson\Bundle\CoreBundle\SamsonCoreBundle(),
-            new Samson\Bundle\DataGridBundle\SamsonDataGridBundle(),
-            new Samson\Bundle\FilterBundle\SamsonFilterBundle(),
-            new Samson\Bundle\FrameworkBundle\SamsonFrameworkBundle(),
-            new Samson\Bundle\FrameworkExtraBundle\SamsonFrameworkExtraBundle(),
-            new Samson\Bundle\ReleaseBundle\SamsonReleaseBundle(),
-            new Samson\Bundle\SecurityBundle\SamsonSecurityBundle(),
-            new Samson\Bundle\StatisticsBundle\SamsonStatisticsBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new \FOS\RestBundle\FOSRestBundle,
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new Example\ExampleBundle\ExampleExampleBundle(),
             new Plu\RerBundle\PluRerBundle(),
         );
 
@@ -47,6 +36,6 @@ class AppKernel extends Kernel
 
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        $loader->load(__DIR__ . '/config/config_' . $this->getEnvironment() . '.yml');
     }
 }

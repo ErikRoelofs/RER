@@ -3,39 +3,5 @@ plu_rer:
     type:     annotation
     prefix:   /
 
-example_example:
-    resource: "@ExampleExampleBundle/Controller"
-    type: annotation
-    prefix:   /
-
-SamsonCoreBundle:
-    resource: "@SamsonCoreBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-SamsonFrameworkBundle:
-    resource: "@SamsonFrameworkBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-SamsonSecurityBundle:
-    resource: "@SamsonSecurityBundle/Resources/config/routing.yml"
-    type:     yaml
-    prefix:   /
-
-SamsonAddressBookBundle:
-    resource: "@SamsonAddressBookBundle/Resources/config/routing.yml"
-    type:     yaml
-    prefix:   /addressbook
-
-SamsonStatisticsBundle:
-    resource: "@SamsonStatisticsBundle/Controller/"
-    type:     annotation
-    prefix:   /statistics
-
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-homepage:
-    pattern: /
-    defaults: { _controller: ExampleBundle:Example:index }

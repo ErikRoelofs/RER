@@ -1,5 +1,17 @@
-{% extends '::base.html.twig' %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Min players</th>
+        <th>Max players</th>
+        <th>Owner name</th>
+    </tr>
 
-{% block body %}
-
-{% endblock %}
+    {% for row in games %}
+        <tr>
+            <td>{{ row.getName() }}</td>
+            <td>{{ row.getMinPlayers() }}</td>
+            <td>{{ row.getMaxPlayers() }}</td>
+            <td>{{ row.getOwner().getName() }}</td>
+        </tr>
+    {% endfor %}
+</table>

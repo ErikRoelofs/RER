@@ -1,12 +1,7 @@
 imports:
     - { resource: parameters.yml }
-    - { resource: security.yml }
 
 parameters:
-    samson_address_book.person_class: Shifter\AddressBookBundle\Entity\Person
-    samson_address_book.qualification_type_class: Shifter\AddressBookBundle\Entity\QualificationType
-    samson_security.user_class: Samson\Bundle\SecurityBundle\Entity\User
-    assetic.filter.scssphp.import_paths: [ %kernel.root_dir%%/../vendor/samson/framework-bundle/Samson/Bundle/FrameworkBundle/Resources/public/css ]
 
 framework:
     #esi:             ~
@@ -34,12 +29,6 @@ twig:
        info_mail:     %info_mail%
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
-    form:
-      resources:
-        - 'SamsonFrameworkBundle:Form:widgets.html.twig'
-        - 'SamsonFrameworkBundle:Form:editable_grid_widget.html.twig'
-        - 'SamsonFilterBundle:Form:filter_widget.html.twig'
-        - 'SamsonAutocompleteBundle:Form:autocomplete.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -68,42 +57,6 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
-
-    orm:
-        auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
-        dql:
-          datetime_functions:
-            date: Samson\Bundle\CoreBundle\DoctrineExtensions\Query\MySql\Date
-            now: Samson\Bundle\CoreBundle\DoctrineExtensions\Query\MySql\Now
-        resolve_target_entities:
-          Samson\Bundle\SecurityBundle\Entity\AbstractUser: %samson_security.user_class%
-          Samson\Bundle\AddressBookBundle\Entity\PersonInterface: %samson_address_book.person_class%
-          Samson\Bundle\AddressBookBundle\Entity\AbstractQualificationType: %samson_address_book.person_class%
-
-samson_core:
-    env: %samson_core.env%
-    log:
-      from_email: %noreply_address%
-      to_email: %log_address%
-      subject: Message from %app_name%
-    app:
-        company: %app_company%
-        name:    %app_name%
-    filestorage:
-        rootpath: %kernel.root_dir%/Resources/files/
-
-samson_framework:
-    logo: %logo_image%
-    favicon: ~
-
-samson_security:
-    allow_multiple_groups: false
-    email_from: %noreply_address%
-
-samson_filter:
-  use_remember: false
-  use_preset: false
 
 # Swiftmailer Configuration
 swiftmailer:
